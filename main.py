@@ -11,6 +11,8 @@ weights = [
 
 biases = [4, -2.3, 2]
 
+# %%
+# the noob way:
 
 output = []
 
@@ -22,3 +24,7 @@ for neuron_weights, neuron_bias in zip(weights, biases):
     output.append(neuron_output)
 print(output)
 # %%
+# the chad way:
+
+output = np.dot(weights, inputs) + biases
+print(output)
