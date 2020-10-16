@@ -1,29 +1,24 @@
 # %%
 import numpy as np
 
-def createLayer(prevLayerSize, layerSize):
-    weights = np.random.rand(prevLayerSize,layerSize)
-    biases = np.random.rand(prevLayerSize)
-    values = np.ones(layerSize)
-    return [weights, biases, values]
+inputs = [1, 2, 3, 4, 5]
+
+weights = [
+    [0.1, 0.2, 0.5, 0.4, 0.9],
+    [0.5, 0.3, 0.2, 0.2, 0.1],
+    [0.3, 0.7, 0.2, 0.7, 0.6]
+]
+
+biases = [4, -2.3, 2]
 
 
-def updateLayer(prevLayer, layer):
-    layer[2] = prevLayer[2]*layer[0]+layer[1]
+output = []
 
-def createNetwork(layersSizes):
-    layers = [createLayer(i,i+1) for i in range(len(layersSizes)-1)]
-    return layers
-
-def updateNetwork(inputs, network):
-    network[0][2] = inputs
-    for i in range(len(network)-1):
-        updateLayer(network[i],network[i+1])
-
+for neuron_weights, neuron_bias in zip(weights, biases):
+    neuron_output = 0
+    for n_input, weight in zip(inputs, neuron_weights):
+        neuron_output += n_input*weight
+    neuron_output += neuron_bias
+    output.append(neuron_output)
+print(output)
 # %%
-net = createNetwork([2,2,2])
-for layer in range(len(net)):
-    print(net[layer])
-    print("\n")
-# %%
-updateNetwork([1,2], net)
