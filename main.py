@@ -26,5 +26,8 @@ print(output)
 # %%
 # the chad way:
 
+#the last dimension of the matrix needs to be the same length that the vector
 output = np.dot(weights, inputs) + biases
 print(output)
+
+# %%
